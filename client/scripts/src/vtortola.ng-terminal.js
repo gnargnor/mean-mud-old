@@ -279,7 +279,7 @@
 }])
 
 //LK - this is where the html tag terminal is created and contains the code for the terminal to display on the DOM
-.directive('terminal', function ($document) {
+.directive('terminal', ['$document', function ($document) {
     return {
         restrict: 'E',
         controller: 'terminalController',
@@ -464,5 +464,5 @@
             }
         }
     }
-})
+}])
 ;
