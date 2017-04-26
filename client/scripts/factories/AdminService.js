@@ -1,4 +1,4 @@
-myApp.factory('AdminService', ['$http', '$location', function($http, $location){
+app.factory('AdminService', ['$http', '$location', function($http, $location){
   console.log('Admin Service Loaded');
 
   var adminObject = {};
