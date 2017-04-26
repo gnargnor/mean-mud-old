@@ -2,15 +2,34 @@
 <html>
     <head>
         <title>Express / Passport</title>
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="styles/style.css">
-
         <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
         <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
-        <script type="text/javascript" src="scripts/client.min.js"></script>
+
+        <script type="text/javascript" src="scripts/clientapp.js"></script>
+        <script type="text/javascript" src="scripts/terminalModules/example.js"></script>
+        <script type="text/javascript" src="scripts/terminalModules/example.command.tools.js"></script>
+        <script type="text/javascript" src="scripts/terminalModules/example.command.implementations.js"></script>
+        <script type="text/javascript" src="scripts/src/vtortola.ng-terminal.js"></script>
+
+        <script type="text/javascript" src="scripts/controllers/adminController.js"></script>
+        <script type="text/javascript" src="scripts/controllers/infoController.js"></script>
+        <script type="text/javascript" src="scripts/controllers/loginController.js"></script>
+        <script type="text/javascript" src="scripts/controllers/userController.js"></script>
+        <script type="text/javascript" src="scripts/factories/AdminService.js"></script>
+        <script type="text/javascript" src="scripts/factories/UserService.js"></script>
+
+
+
+
+
+        <!-- <script type="text/javascript" src="scripts/client.min.js"></script> -->
     </head>
 
-    <body ng-app="myApp">
+    <body ng-app="app">
       <header ng-include="'/views/partials/header.html'"></header>
 
       <main ng-view></main>

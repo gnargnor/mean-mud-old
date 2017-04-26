@@ -1,4 +1,4 @@
-myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+app.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
     $scope.user = {
       username: '',
       password: '',
@@ -39,8 +39,8 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         },
         function(response) {
           console.log('error');
-          $scope.message = "Please try again."
+          $scope.message = "Please try again.";
         });
       }
-    }
+    };
 }]);
