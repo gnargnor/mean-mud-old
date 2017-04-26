@@ -39,8 +39,8 @@ app.controller('LoginController', ['$scope', '$http', '$location', 'UserService'
         },
         function(response) {
           console.log('error');
-          $scope.message = "Please try again."
+          $scope.message = "Please try again.";
         });
       }
-    }
+    };
 }]);

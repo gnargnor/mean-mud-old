@@ -1,4 +1,6 @@
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ng-terminal-example', 'vtortola.ng-terminal', 'ng-terminal-example.command.tools', 'ng-terminal-example.command.implementations', ]);
+
+
 
 /// Routes ///
 app.config(['$routeProvider', '$locationProvider',
@@ -32,9 +34,9 @@ app.config(['$routeProvider', '$locationProvider',
         }]
       }
     })
-    .when('/info', {
-      templateUrl: '/views/templates/info.html',
-      controller: 'InfoController',
+    .when('/terminal', {
+      templateUrl: '/views/templates/terminal.html',
+      controller: 'console',
       resolve: {
         getuser : ['UserService', function(UserService){
           return UserService.getuser();
