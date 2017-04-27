@@ -10,6 +10,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var create = require('./routes/create');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,17 +28,20 @@ app.use(session({
    cookie: { maxage: 60000, secure: false }
 }));
 
+//DATABASE MODULE
+var mongoDB = require('./modules/db.js');
+
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/create', create);
 app.use('/register', register);
 app.use('/user', user);
 app.use('/', index);
 
-//DATABASE MODULE
-var db = require('./modules/db.js');
+
 
 // App Set //
 app.set('port', (process.env.PORT || 5000));

@@ -1,17 +1,37 @@
-app.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
-    $scope.user = {
+app.controller('LoginController', ['$timeout', '$http', '$location', 'UserService', function($timeout, $http, $location, UserService) {
+    var login = this;
+
+    login.user = {
       username: '',
       password: '',
       isAdmin: false
     };
-    $scope.message = '';
+    login.username = 'bill';
+    login.message = '';
+    login.newUser = false;
+    login.newUserMessage = 'user successfully created: ' + login.username;
 
-    $scope.login = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Enter your username and password!";
+    login.newUserConfirmation = function(username){
+      login.username = username;
+      login.newUser = true;
+      login.newUserMessage = 'User successfully registered: ' + username;
+      console.log(login.newUserMessage);
+      console.log(login.newUser);
+      $timeout(function(){
+        console.log('timeout hit');
+        login.newUser = false;
+        login.newUserMessage = '';
+        $location.path('/home');
+        }, 3000);
+  };
+
+    login.login = function() {
+      if(login.user.username === '' || login.user.password === '') {
+        login.message = "Enter your username and password!";
       } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/', $scope.user).then(function(response) {
+        console.log('sending to server...', login.user);
+        $http.post('/', login.user).then(function(response) {
+          console.log(response.data);
           if(response.data.username) {
             console.log('success: ', response.data);
             if(response.data.isAdmin){
@@ -21,25 +41,30 @@ app.controller('LoginController', ['$scope', '$http', '$location', 'UserService'
               $location.path('/user');
             } else {
             console.log('failure: ', response);
-            $scope.message = "Wrong!!";
+            login.message = "Wrong!!";
             }
           }
         });
       }
     };
 
-    $scope.registerUser = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Choose a username and password!";
+    login.registerUser = function() {
+      if(login.user.username === '' || login.user.password === '') {
+        login.message = "Choose a username and password!";
       } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/register', $scope.user).then(function(response) {
-          console.log('success');
-          $location.path('/home');
-        },
-        function(response) {
+        console.log('sending to server...', login.user);
+        $http.post('/register', login.user).then(function(response) {
+          console.log('registered: ', response);
+          if (response.data.newUser) {
+            var username = response.data.username;
+
+            console.log('username: ', username);
+            login.newUserConfirmation(username);
+
+          } else {
           console.log('error');
-          $scope.message = "Please try again.";
+          login.message = "Please try again.";
+        }
         });
       }
     };

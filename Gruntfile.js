@@ -4,7 +4,8 @@ module.exports = function(grunt){
     uglify: {
       build: {
         src: ['client/scripts/*.js',
-              'client/scripts/**/*.js'],
+              'client/scripts/**/*.js',
+              'client/scripts/**/**/*.js'],
         dest: 'server/public/scripts/client.min.js'
       }
     },
@@ -19,7 +20,9 @@ module.exports = function(grunt){
         expand: true,
         cwd: 'client/views',
         src: ['index.html',
-              '**/*.html'],
+              '**/*.html',
+              '**/**/*.html',
+              '**/**/**/*.html'],
         dest: 'server/public/views/'
       },
       css: {
@@ -50,7 +53,13 @@ module.exports = function(grunt){
               'angular-route.min.js',
               'angular-route.min.js.map'],
         dest: 'server/public/vendors/angular-route/'
-      }
+      },
+      angularbootstrap: {
+        expand: true,
+        cwd: 'node_modules/angular-ui-bootstrap/dist',
+        src: 'ui-bootstrap.js',
+        dest: 'server/public/vendors/angular-ui-bootstrap/'
+      },
     },
     watch: {
       options: {
