@@ -5,7 +5,8 @@ module.exports = function(grunt){
       build: {
         src: ['client/scripts/*.js',
               'client/scripts/**/*.js',
-              'client/scripts/**/**/*.js'],
+              'client/scripts/**/**/*.js',
+              'client/scripts/**/**/**/*.js'],
         dest: 'server/public/scripts/client.min.js'
       }
     },
@@ -66,7 +67,9 @@ module.exports = function(grunt){
         livereload: true
       },
       files: [
-        'client/**/*.*'
+        'client/**/*.*',
+        'client/**/**/*.*',
+        'client/**/**/**/*.*'
       ],
       //'uglify',
       tasks: ['uglify', 'copy']

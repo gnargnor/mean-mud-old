@@ -42,6 +42,48 @@ app.config(['$routeProvider', '$locationProvider',
       }
     })//create
 
+    //new location route - available to logged in users
+    .when('/newLoc', {
+      templateUrl: 'views/templates/user/create/location/newLoc.html',
+      controller: 'LocationController as location',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })//new location
+
+    .when('/existingLoc', {
+      templateUrl: 'views/templates/user/create/location/existingLoc.html',
+      controller: 'LocationController as location',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+    //new location route - available to logged in users
+    .when('/newItem', {
+      templateUrl: 'views/templates/user/create/item/newItem.html',
+      controller: 'ItemController as item',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })//new location
+
+    .when('/existingItem', {
+      templateUrl: 'views/templates/user/create/item/existingItem.html',
+      controller: 'ItemController as item',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
     //admin route - logged in
     .when('/admin', {
       templateUrl: '/views/templates/admin.html',

@@ -1,16 +1,17 @@
 <div ng-include="'views/partials/usernav.html'"></div>
+<h1 class="lead alert alert-danger" role="alert" ng-if="create.messageObject.message != ''">{{create.messageObject.message}}</h1>
 <div class="container">
   <form ng-submit="create.worldCreator(create.world)">
   <div class="form-group">
     <label for="title">Title Your Creation:</label>
-    <input type="text" class="form-control" id="worldTitle" ng-model="create.world.title">
+    <input type="text" class="form-control" id="worldName" ng-model="create.world.worldName">
   </div>
   <div class="form-group">
     <label for="shortDesc">a Short Description:</label>
     <input type="text" class="form-control" id="worldShortDesc" ng-model="create.world.shortDesc">
   </div>
   <div class="form-group">
-    <label for="author">and your John Han(dle)cock:</label>
+    <label for="author">and Your Signature Please:</label>
     <input type="text" class="form-control" id="worldAuthor" ng-model="create.world.author">
   </div>
   <button type="submit" class="btn btn-default">Create</button>
@@ -18,8 +19,9 @@
 </div>
 
 
-<div class="container" ng-repeat="world in create.curWorlds">
-  <h3>{{world.title}}</h3>
+<div class="container" ng-repeat="world in create.worldsObject.curWorlds">
+  <h3>{{world.worldName}}</h3>
   <p>{{world.shortDesc}}</p>
   <p>{{world.author}}</p>
+  <button ng-click="editWorld(world)">Edit!</button>
 </div>

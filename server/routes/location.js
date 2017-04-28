@@ -1,36 +1,36 @@
 var express = require('express');
 var router = express.Router();
-var World = require('../models/world');
+var Location = require('../models/location');
 var path = require('path');
 
 
 router.get('/', function(req, res){
   console.log('get route hit: ');
-  World.find({}, function(err, allWorlds){
+  Location.find({}, function(err, allLocations){
     if (err) {
       console.log('mongo error: ', err);
       res.sendStatus(500);
     }
-    res.send(allWorlds);
+    res.send(allLocations);
   });
 });
 
 router.post('/', function(req, res){
 
   console.log('create post route hit: ', req.body);
-  var curWorld = req.body;
-  var worldServer = new World({
-    worldName: curWorld.worldName,
-    author: curWorld.author,
+  var curLoc = req.body;
+  var locServer = new Location({
+    locName: curLoc.locName,
+    locShortDesc: curLoc.locShortDesc,
     dateCreated: new Date(),
-    shortDesc: curWorld.shortDesc,
+    locDesc: curLoc.locDesc,
   });
-  console.log(worldServer);
-  worldServer.save(function(err, newWorld){
+  console.log(locServer);
+  locServer.save(function(err, newLoc){
     if (err) {
       console.log('save error: ', err);
     }
-    console.log('saved: ', newWorld);
+    console.log('saved: ', newLoc);
     res.sendStatus(200);
   });
 });

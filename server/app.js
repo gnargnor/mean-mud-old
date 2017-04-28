@@ -11,6 +11,8 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var create = require('./routes/create');
+var location = require('./routes/location');
+var item = require('./routes/item');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -36,6 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/item', item);
+app.use('/location', location);
 app.use('/create', create);
 app.use('/register', register);
 app.use('/user', user);
