@@ -7,6 +7,7 @@ app.controller('ItemController', ['CreatorService', '$scope', '$http', '$locatio
   item.itemsObject = CreatorService.itemsObject;
   item.itemCreator = CreatorService.itemCreator;
   item.getItems = CreatorService.getItems;
+  item.editItem = CreatorService.editItem;
 
   item.messageObject = CreatorService.messageObject;
   console.log(item.newItem, item.itemCreator);

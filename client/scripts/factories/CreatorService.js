@@ -6,7 +6,8 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
 
   //world definitions
   var worldsObject = {
-    curWorlds : []
+    curWorlds : [],
+    curWorld : {}
   };
 
   var world = {
@@ -47,11 +48,19 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
           worldsObject.curWorlds = response.data;
           return worldsObject.curWorlds;
         });
-  };//world definitions
+  };
+
+  var editWorld = function(world) {
+    console.log(world);
+    worldsObject.curWorld = world;
+    $location.path('/worldHome');
+  };
+  //world definitions
 
   //location definitions
   var locationsObject = {
-    curLocs : []
+    curLocs : [],
+    curLoc : {}
   };
 
   var newLoc = {
@@ -92,11 +101,19 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
         locationsObject.curLocs = response.data;
         return locationsObject.curLocs;
       });
-  };//location definitions
+  };
+
+  var editLocation = function(location){
+    console.log('edit location: ', location);
+    locationObject.curLoc = location;
+    $location.path('/existingLoc');
+  };
+  //location definitions
 
   //item definitions
   var itemsObject = {
-    curItems : []
+    curItems : [],
+    curItem : {}
   };
 
   var newItem = {
@@ -119,7 +136,7 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
     newItem.itemDesc = '';
     newItem.itemNotes = '';
     addItemToWorld(curItem);
-  };
+  };//end item creator
 
   var addItemToWorld = function(newItem) {
     $http.post('/item', newItem)
@@ -127,7 +144,7 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
         console.log('addItemToWorld: ', response);
         getItems();
       });
-  };
+  };//end addItemToWorld
 
 
 
@@ -138,7 +155,13 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
         itemsObject.curItems = response.data;
         return itemsObject.curItems;
       });
-  };//location definitions
+  };
+
+  var editItem = function(item){
+    itemObject.curItem = item;
+    $location.path('/existingItem');
+  };
+  //item definitions
 
   return {
 
@@ -147,18 +170,21 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
     worldsObject : worldsObject,
     worldCreator : worldCreator,
     getWorlds : getWorlds,
+    editWorld : editWorld,
 
     //location exports
     newLoc : newLoc,
     locationsObject : locationsObject,
     locationCreator : locationCreator,
     getLocations : getLocations,
+    editLocation : editLocation,
 
     //items exports
     newItem : newItem,
     itemsObject : itemsObject,
     itemCreator : itemCreator,
     getItems : getItems,
+    editItem : editItem,
 
     //messages
     messageObject : messageObject

@@ -1,0 +1,15 @@
+<div ng-include="views/partials/usernav.html"></div>
+<h2>{{create.worldsObject.curWorld.worldName}}</h2>
+<!-- edit world with existing world link could go here -->
+<div class="row" id="locations">
+  <div class="col col-lg-4 col-md-4 col-sm-12" id="locNames">
+    <div ng-repeat="loc in create.locationsObject.curLocations">
+      <p>{{loc.locName}}<button class="btn btn-sm" ng-click="displayDescription(loc)"</p>
+    </div>
+  </div>
+  <div class="col col-lg-8 col-md-8 col-sm-12" id="locDetail">
+    <h3>{{create.locationsObject.curLocation.locName}}</h3>
+    <p>{{create.locationsObject.curLocation.locDesc}}</p>
+    <button class="btn" ng-click="create.editLocation(create.locationsObject.curLocation)">Edit</button>
+  </div>
+</div>

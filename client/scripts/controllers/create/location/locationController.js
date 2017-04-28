@@ -7,6 +7,7 @@ app.controller('LocationController', ['CreatorService', '$scope', '$http', '$loc
   location.locationsObject = CreatorService.locationsObject;
   location.locationCreator = CreatorService.locationCreator;
   location.getLocations = CreatorService.getLocations;
+  location.editLocation = CreatorService.editLocation;
 
   location.messageObject = CreatorService.messageObject;
 

@@ -42,6 +42,17 @@ app.config(['$routeProvider', '$locationProvider',
       }
     })//create
 
+    //world view route - available to logged in users
+    .when('/worldHome', {
+      templateUrl: '/views/templates/user/create/worldHome.html',
+      controller: 'CreateController as create',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })//world view
+
     //new location route - available to logged in users
     .when('/newLoc', {
       templateUrl: 'views/templates/user/create/location/newLoc.html',

@@ -19,8 +19,8 @@
 </div>
 
 
-<div class="container" ng-repeat="item in item.itemsObject.curItems">
-  <h3>{{item.itemName}}</h3>
-  <p>{{item.itemDesc}}</p>
-  <button ng-click="editItem(item)">Edit!</button>
+<div class="container" ng-repeat="curItem in item.itemsObject.curItems">
+  <h3>{{curItem.itemName}}</h3>
+  <p>{{curItem.itemDesc}}</p>
+  <button ng-click="item.editItem(curItem)">Edit!</button>
 </div>
