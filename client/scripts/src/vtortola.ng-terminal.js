@@ -1,4 +1,4 @@
-﻿angular.module('vtortola.ng-terminal', [])
+﻿angular.module('vtortola.ng-terminal', ['app'])
 
 .provider('terminalConfiguration', function () {
 
@@ -279,7 +279,7 @@
 }])
 
 //LK - this is where the html tag terminal is created and contains the code for the terminal to display on the DOM
-.directive('terminal', ['$document', function ($document) {
+.directive('terminal', ['CreatorService', '$document', function (CreatorService, $document) {
     return {
         restrict: 'E',
         controller: 'terminalController',

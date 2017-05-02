@@ -1,4 +1,4 @@
-﻿angular.module('ng-terminal-example', ['vtortola.ng-terminal', 'ng-terminal-example.command.tools', 'ng-terminal-example.command.implementations'])
+﻿angular.module('ng-terminal-example', ['app', 'vtortola.ng-terminal', 'ng-terminal-example.command.tools', 'ng-terminal-example.command.implementations'])
 //removed 'ng-terminal-example.command.filesystem' from dependency array above
 // .provider('$ga', function () {
 //
@@ -31,9 +31,17 @@
 //     return provider();
 // })
 //LK - removed $ga between commandBroker and $rootScope in dependencies before and within function
-.controller('console',['$scope','commandBroker','$rootScope', function ($scope, commandBroker, $rootScope) {
+.controller('console',['CreatorService', '$scope','commandBroker','$rootScope', '$http', function (CreatorService, $scope, commandBroker, $rootScope, $http) {
+
+    // $scope.getWorlds = CreatorService.getWorlds;
+    //$scope.getWorlds();
+    //$scope.worldsObject = CreatorService.worldsObject;
+    //console.log($scope.worldsObject);
 
     $rootScope.theme = 'vintage';
+
+    // Get the worlds and print them to the session output
+
 
     setTimeout(function () {
         //LK - welcome message.  change to output world intro.
@@ -97,7 +105,11 @@
         console.log(cmd);
         // $ga('send', 'event', 'Console', 'Input', cmd.command );
         try {
-            if ($scope.session.context) {
+          console.log('I AM HERE',$scope.session.http);
+            if($scope.session.http == 'hello') {
+              console.log('HTTP!!!!!!!!!!!!!!!');
+            }
+            else if ($scope.session.context) {
                 $scope.session.context.execute($scope.session, cmd.command);
             }
             //LK - this sends cmd.command to the commandBroker in most cases

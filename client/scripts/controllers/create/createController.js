@@ -3,7 +3,7 @@ app.controller('CreateController', ['CreatorService', '$scope', '$http', '$locat
 
   var create = this;
 
-  create.world = CreatorService.world;
+  create.newWorld = CreatorService.newWorld;
   create.worldsObject = CreatorService.worldsObject;
   create.worldCreator = CreatorService.worldCreator;
   create.getWorlds = CreatorService.getWorlds;
@@ -14,9 +14,17 @@ app.controller('CreateController', ['CreatorService', '$scope', '$http', '$locat
   create.itemsObject = CreatorService.itemsObject;
   create.editItem = CreatorService.editItem;
 
+  create.displayDesc = CreatorService.displayDesc;
+
   create.messageObject = CreatorService.messageObject;
 
-  create.getWorlds();
+  create.addLocation = function(){
+    $location.path('/newLoc');
+  };
+
+  create.addItem = function(){
+    $location.path('/newItem');
+  };
   console.log('createController : ', create.worldsObject.curWorlds);
 
 }]);

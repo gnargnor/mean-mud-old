@@ -8,10 +8,6 @@ router.get('/', function(req, res) {
   console.log('get /user route');
   // check if logged in
   if(req.isAuthenticated()) {
-    if (req.user.username === 'benbizzey'){
-      console.log('admin logged in');
-      req.user.isAdmin = true;
-    }
     console.log('logged in');
     console.log(req.user);
     res.send(req.user);

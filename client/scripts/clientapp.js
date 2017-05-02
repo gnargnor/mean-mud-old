@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'ng-terminal-example', 'vtortola.ng-terminal', 'ng-terminal-example.command.tools', 'ng-terminal-example.command.implementations', ]);
+var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'ng-terminal-example', 'vtortola.ng-terminal', 'ng-terminal-example.command.tools', 'ng-terminal-example.command.implementations']);
 
 
 
@@ -30,6 +30,18 @@ app.config(['$routeProvider', '$locationProvider',
         }]
       }
     })//user
+
+    //world list
+    .when('/worlds', {
+      templateUrl: '/views/templates/user/create/worlds.html',
+      controller: 'CreateController as worlds',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+      //end world list
 
     //create route - available to logged in users
     .when('/create', {
@@ -95,6 +107,17 @@ app.config(['$routeProvider', '$locationProvider',
       }
     })
 
+    //terminal route - available to logged in users
+    .when('/terminal', {
+      templateUrl: '/views/templates/user/gameplay/terminal.html',
+      controller: 'console',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })//terminal
+
     //admin route - logged in
     .when('/admin', {
       templateUrl: '/views/templates/admin.html',
@@ -106,16 +129,75 @@ app.config(['$routeProvider', '$locationProvider',
       }
     })//admin
 
-    //terminal route - available to logged in users
-    .when('/terminal', {
-      templateUrl: '/views/templates/user/gameplay/terminal.html',
-      controller: 'console',
+    .when('/universe', {
+      templateUrl: '/views/templates/admin/universe.html',
+      controller: 'UniverseController as unv',
       resolve: {
-        getuser : ['UserService', function(UserService){
-          return UserService.getuser();
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
         }]
       }
-    })//terminal
+    })
+
+    .when('/universeHome', {
+      templateUrl: '/views/templates/admin/universeHome.html',
+      controller: 'UniverseController as unv',
+      resolve: {
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
+
+    .when('/universeCreator', {
+      templateUrl: '/views/templates/admin/universeCreator.html',
+      controller: 'UniverseController as unv',
+      resolve: {
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
+
+    .when('/universeWorlds', {
+      templateUrl: '/views/templates/admin/universeWorlds.html',
+      controller: 'UniverseController as unv',
+      resolve: {
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
+
+    .when('/universePlayer', {
+      templateUrl: '/views/templates/admin/universePlayer.html',
+      controller: 'UniverseController as unv',
+      resolve: {
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
+
+    .when('/universeEngine', {
+      templateUrl: '/views/templates/admin/universeEngine.html',
+      controller: 'UniverseController as unv',
+      resolve: {
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
+
+    .when('/universeUsers', {
+      templateUrl: '/views/templates/admin/universeUsers.html',
+      controller: 'UniverseController as unv',
+      resolve: {
+        getadmin : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
 
     .otherwise({
       redirectTo: '/home'

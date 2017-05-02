@@ -35,4 +35,18 @@ router.post('/', function(req, res){
   });
 });
 
+// db.getCollection('worlds').find({"locations._id" : ObjectId("59079d97cc58952e9ed3ba84")})
+
+router.put('/', function(req, res){
+  console.log('location put route hit: ', req.body);
+  Worlds.find(req.body._id, function(err, curLoc){
+    if (err) {
+      console.log('location put error: ', err);
+      res.sendStatus(500);
+    }
+    console.log('location put found: ', curLoc);
+    res.send(curLoc);
+  });
+});
+
 module.exports = router;

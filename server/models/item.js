@@ -6,7 +6,7 @@ console.log('item model hit');
 var ItemSchema = new Schema({
     itemName : {type: String, required: true, index: {unique:true}},
   	itemType : {type: String},
-  	dateCreated : {type: Date, required: true},
+  	// timestamps : true,
   	itemDesc : {type: String, required: true},
     itemNotes : {type: String},
     //Location will refer to the character inventory or location inventory

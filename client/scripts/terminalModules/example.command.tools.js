@@ -1,4 +1,4 @@
-﻿angular.module('ng-terminal-example.command.tools', [])
+﻿angular.module('ng-terminal-example.command.tools', ['app'])
 //this module parses the information entered into the command line so it enters the command broker as expected
 .provider('commandLineSplitter', function () {
     var provider = function () {
@@ -86,6 +86,7 @@
 
 .provider('commandBroker', function () {
 
+    // console.log('Creator Service in command Broker: ', CreatorService.worldsObject);
     var provider = function () {
         var me = {};
         me.handlers = [];

@@ -1,0 +1,13 @@
+<div ng-include="'views/partials/adminnav.html'"></div>
+<h1 class="lead alert alert-danger" role="alert" ng-if="unv.messageObject.message != ''">{{unv.messageObject.message}}</h1>
+<div class="container">
+  <h2>{{unv.unvsObject.curUnv.universeName}}</h2>
+  <p>v {{unv.unvsObject.curUnv.version}}</p>
+  <p>created by <strong>{{unv.unvsObject.curUnv.author}}</strong></p>
+</div>
+<ul>
+  <li><a href="#/universeWorlds">Worlds</a></li>
+  <li><a href="#/universePlayer">Player Config</a></li>
+  <li><a href="#/universeEngine">Engine Config</a></li>
+  <li><a href="#/admin">Users</a></li>
+</ul>

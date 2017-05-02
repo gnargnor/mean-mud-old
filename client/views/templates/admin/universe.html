@@ -1,0 +1,9 @@
+<div ng-include="'views/partials/adminnav.html'"></div>
+<div class="container" ng-repeat="universe in unv.unvsObject.allUnvs">
+  <h2>All Universes</h2>
+  <hr>
+  <h3>{{universe.universeName}}</h3>
+  <p>{{universe.version}}</p>
+  <p>{{universe.author}}</p>
+  <button ng-click="unv.editUnv(universe)">Edit!</button>
+</div>

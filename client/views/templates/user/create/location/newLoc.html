@@ -1,6 +1,7 @@
 <div ng-include="'views/partials/usernav.html'"></div>
 
 <div class="container">
+  <h2>Your Location Creation Station</h2>
     <form ng-submit="location.locationCreator(location.newLoc)">
         <div class="form-group">
             <label for="locName">Title Your Location:</label>
@@ -21,11 +22,4 @@
         <button type="submit" class="btn btn-default">Create</button>
     </form>
 
-</div>
-
-
-<div class="container" ng-repeat="loc in location.locationsObject.curLocs">
-  <h3>{{loc.locName}}</h3>
-  <p>{{loc.locShortDesc}}</p>
-  <button ng-click="editLocation(loc)">Edit!</button>
 </div>

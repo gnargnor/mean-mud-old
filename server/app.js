@@ -10,8 +10,10 @@ var session = require('express-session');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var universe = require('./routes/universe');
 var create = require('./routes/create');
 var location = require('./routes/location');
+var sight = require('./routes/sight');
 var item = require('./routes/item');
 
 // Body parser middleware
@@ -39,8 +41,10 @@ app.use(passport.session());
 
 // Routes
 app.use('/item', item);
+app.use('/sight', sight);
 app.use('/location', location);
 app.use('/create', create);
+app.use('/universe', universe);
 app.use('/register', register);
 app.use('/user', user);
 app.use('/', index);

@@ -1,4 +1,4 @@
-﻿angular.module('ng-terminal-example.command.implementations', ['ng-terminal-example.command.tools'])
+﻿angular.module('ng-terminal-example.command.implementations', ['app', 'ng-terminal-example.command.tools'])
 
 .config(['commandBrokerProvider', function (commandBrokerProvider) {
 
@@ -11,7 +11,7 @@
           var b = party;
           var a = ['successful', 'hack', ':', b];
 
-          console.log(b);
+          console.log();
 
           session.output.push({ output: true, text: [a.join(' ')], breakLine: true });
           // a = testObject.bingbong;
@@ -34,6 +34,29 @@
         description: ['Clears the screen.'],
         handle: function (session) {
             session.commands.push({ command: 'clear' });
+        }
+    });
+
+    commandBrokerProvider.appendCommandHandler({
+        command: 'worlds',
+        description: ['Print out list of worlds.'],
+        handle: function (session) {
+          session.http = 'hello';
+          var $http = angular.injector(['ng']).get('$http');
+          $http.get('/create').then(function(response){
+            console.log('getWorlds: ', response.data);
+            var worlds =  response.data;
+            var worldNames = [];
+            for(var i = 0; i < response.data.length; i++) {
+              worldNames.push(response.data[i].worldName);
+            }
+            console.log(worldNames);
+            // getLocations();
+            session.output.push({ output: true, text: [worldNames.join(' ')], breakLine: true });
+            // session.$scope.$apply();
+          });
+          session.output.push({ output: true, text: ['Requesting worlds'], breakLine: true });
+
         }
     });
 
