@@ -1,17 +1,25 @@
 var express = require('express');
 var router = express.Router();
+var World = require('../models/world');
 var Location = require('../models/location');
 var path = require('path');
 
 
 router.get('/', function(req, res){
   console.log('get route hit: ');
-  Location.find({}, function(err, allLocations){
-    if (err) {
-      console.log('mongo error: ', err);
-      res.sendStatus(500);
-    }
-    res.send(allLocations);
+  World.findOne({ '_id': '59023c3e22868372298867c6'},  function(err, world) {
+   if (err || !world) {
+     console.log('error on world find');
+   }
+   Location.find({ world: world._id}, {world: 0})
+    .populate('sights', [], {})
+    .run(function(err, sights){
+      if (err)
+        console.log('error in run function');
+      var result = world.toObject();
+      result.location = location;
+      console.log(result);
+    });
   });
 });
 

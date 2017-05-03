@@ -124,20 +124,21 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
   };
 
   var editWorld = function(world) {
-    // console.log(world);
+    locationsObject.curLocs = [];
+    locationsObject.curLoc = {};
     getLocations();
     $location.path('/worldHome');
   };
 
-  var editLocation = function(){
-    console.log('editLocation sights: ', locationsObject.curLoc, locationsObject.curLoc.sights);
-    getLocations();
+  var editLocation = function(curLoc){
+    locationsObject.curLoc = curLoc;
     $location.path('/existingLoc');
   };
 
   var addLocToWorld = function(newLoc) {
     worldsObject.curWorld.locations.push(newLoc);
     updateWorld(worldsObject.curWorld);
+    locationsObject.curLoc = newLoc;
     $location.path('/existingLoc');
   };
 
@@ -153,9 +154,11 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
     sight.sightDesc = '';
     sight.isImportant = false;
     locationsObject.curLoc.sights.push(newSight);
-    locationsObject.curLoc.sights.curSight = newSight;
+    locationsObject.curLoc.curSight = newSight;
+    var locSaver = locationsObject.curLoc;
     console.log(locationsObject.curLoc.sights);
     updateLocation(locationsObject.curLoc);
+    locationsObject.curLoc = locSaver;
     // editSight(locationsObject.curLoc.sights.curSight);
   };
 
@@ -242,6 +245,7 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
       var world = typeOfInput;
       worldsObject.curWorld = world;
     } else if (typeOfInput.locName){
+
       var location = typeOfInput;
       locationsObject.curLoc = location;
       console.log('displayDesc: ', locationsObject.curLoc);
@@ -250,7 +254,7 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
       itemsObject.curItem = item;
     } else if (typeOfInput.sightDesc){
       var sight = typeOfInput;
-      locationsObject.curLoc.sights.curSight = sight;
+      locationsObject.curLoc.curSight = sight;
     } else {
       messageObject.message = "display error: bad code";
     }
@@ -276,16 +280,25 @@ app.factory('CreatorService', ['$http', '$location', function($http, $location){
 
   var getLocations = function() {
     locationsObject.curLocs = worldsObject.curWorld.locations;
-    locationsObject.curLoc = {};
     locationsObject.curWorld = worldsObject.curWorld._id;
   };
+
+  var getLocationTest = function() {
+    return $http.get('/location')
+      .then(function(response){
+        console.log(response);
+        // getLocations();
+      });
+  };
+
+  // getLocationTest();
 
 
 
   //get calls
   getActiveUniverse();
   getWorlds();
-  getLocations();
+  // getLocations();
   // getItems();
 
   return {

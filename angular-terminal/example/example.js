@@ -32,6 +32,10 @@
 // })
 //LK - removed $ga between commandBroker and $rootScope in dependencies before and within function
 .controller('console',['$scope','commandBroker','$rootScope', function ($scope, commandBroker, $rootScope) {
+    $scope.$on('terminal-apply', function (e, consoleInput) {
+      console.log('scope on terminal apply');
+      $scope.$$phase || $scope.$apply();
+    });
 
     $rootScope.theme = 'vintage';
 

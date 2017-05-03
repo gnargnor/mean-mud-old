@@ -1,6 +1,34 @@
 ﻿angular.module('ng-terminal-example.command.implementations', ['ng-terminal-example.command.tools'])
 
 .config(['commandBrokerProvider', function (commandBrokerProvider) {
+  var listCommandHandler = function () {
+        var me = {};
+        var _http = null;
+        var _scope = null;
+        me.command = 'worlds';
+        me.description = ['list out the worlds'];
+        // Inject dependencies
+        me.init = ['$http', '$rootScope', function ($http, $rootScope) {
+            _http = $http;
+            _scope = $rootScope;
+        }];
+        me.handle = function (session, param) {
+          _http.get('/create').then(function(response){
+              var worlds =  response.data;
+              var worldNames = [];
+              for(var i = 0; i < response.data.length; i++) {
+                worldNames.push(response.data[i].worldName);
+              }
+              console.log(worldNames);
+              session.output.push({ output: true, text: [worldNames.join(' ')], breakLine: true });
+              // Broadcast an apply
+              _scope.$broadcast('terminal-apply', {});;
+            });
+        }
+        return me;
+  };
+  commandBrokerProvider.appendCommandHandler(listCommandHandler());
+
   var testObject = {
     bingbong : ['All of the text can go in here like this please?', 'thanks'],
     dingdong : ['This is a line on a new line', 'ok?']

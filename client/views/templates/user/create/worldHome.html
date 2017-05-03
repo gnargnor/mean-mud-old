@@ -15,7 +15,7 @@
         <div class="col col-lg-8 col-md-8 col-sm-12" id="locDetail">
             <h3>{{create.locationsObject.curLoc.locName}}</h3>
             <p>{{create.locationsObject.curLoc.locDesc}}</p>
-            <span class="glyphicon glyphicon-pencil" ng-click="create.editLocation()" ng-show="create.locationsObject.curLoc.locName">
+            <span class="glyphicon glyphicon-pencil" ng-click="create.editLocation(create.locationsObject.curLoc)" ng-show="create.locationsObject.curLoc.locName">
         </div>
     </div>
     <div class="row" id="items">

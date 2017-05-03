@@ -10,7 +10,7 @@
         <div ng-repeat="world in worlds.worldsObject.curWorlds">
             <p ng-click="worlds.displayDesc(world)">{{world.worldName}}</p>
         </div>
-      <span class="glyphicon glyphicon-plus" ng-click="world.addWorld()"></span>
+      <span class="glyphicon glyphicon-plus" ng-click="worlds.addWorld()"></span>
     </div>
     <div class="col col-lg-8 col-md-8 col-sm-12" id="worldDetail">
         <h3>{{worlds.worldsObject.curWorld.worldName}}</h3>

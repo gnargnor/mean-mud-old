@@ -11,11 +11,13 @@ app.controller('LocationController', ['CreatorService', '$scope', '$http', '$loc
 
   location.addSightView = false;
   location.editSightView = false;
+  location.displayDescView = false;
 
   location.addSight = function(){
-    console.log('add sight');
-    if (location.editSightView) {
+    console.log('add sight', location.locationsObject.curLoc);
+    if (location.editSightView || location.displayDescView) {
       location.editSightView = false;
+      location.displayDescView = false;
     }
     location.addSightView = true;
   };
@@ -23,12 +25,20 @@ app.controller('LocationController', ['CreatorService', '$scope', '$http', '$loc
   location.addSightToLoc = CreatorService.addSightToLoc;
   location.displayDesc = CreatorService.displayDesc;
 
-
+  location.displayView = function(){
+    console.log('displayView: ', location.locationsObject.curLoc.sights.curSight);
+    if (location.editSightView || location.addSightView){
+      location.editSightView = false;
+      location.addSightView = false;
+    }
+    location.displayDescView = true;
+  };
 
   location.editSight = function(sight){
     console.log('edit sight');
-    if (location.addSightView) {
+    if (location.addSightView || location.displayDescView) {
       location.addSightView = false;
+      location.displayDescView = false;
     }
     location.editSightView = true;
   };
@@ -40,6 +50,6 @@ app.controller('LocationController', ['CreatorService', '$scope', '$http', '$loc
 
   location.messageObject = CreatorService.messageObject;
 
-  location.getLocations();
+  // location.getLocations();
 
 }]);

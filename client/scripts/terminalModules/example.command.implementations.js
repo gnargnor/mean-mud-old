@@ -37,28 +37,56 @@
         }
     });
 
-    commandBrokerProvider.appendCommandHandler({
-        command: 'worlds',
-        description: ['Print out list of worlds.'],
-        handle: function (session) {
-          session.http = 'hello';
-          var $http = angular.injector(['ng']).get('$http');
-          $http.get('/create').then(function(response){
-            console.log('getWorlds: ', response.data);
-            var worlds =  response.data;
-            var worldNames = [];
-            for(var i = 0; i < response.data.length; i++) {
-              worldNames.push(response.data[i].worldName);
-            }
-            console.log(worldNames);
-            // getLocations();
-            session.output.push({ output: true, text: [worldNames.join(' ')], breakLine: true });
-            // session.$scope.$apply();
-          });
-          session.output.push({ output: true, text: ['Requesting worlds'], breakLine: true });
+    var worldsCommandHandler = function () {
+      var me = {};
+      var _http = null;
+      var _scope = null;
+      me.command = 'list';
+      me.description = ['list out the target array values'];
+      // Inject dependencies
+      me.init = ['$http', '$rootScope', function ($http, $rootScope) {
+          _http = $http;
+          _scope = $rootScope;
+      }];
+      me.handle = function (session, target) {
+        var whatList = ['What', 'would', 'you', 'like', 'to', 'list?'];
+        switch(target){
 
-        }
-    });
+          case 'worlds':
+            _http.get('/create').then(function(response){
+                var worlds =  response.data;
+                var worldNames = [];
+                for(var i = 0; i < response.data.length; i++) {
+                  worldNames.push(response.data[i].worldName);
+                }
+                console.log(worldNames);
+                session.output.push({ output: true, text: [worldNames.join(' ')], breakLine: true });
+                // Broadcast an apply
+                _scope.$broadcast('terminal-apply', {});
+              });
+              break;
+          case 'locations':
+            _http.get('/location').then(function(response){
+                var locations =  response.data;
+                var locNames = [];
+                for(var i = 0; i < response.data.length; i++) {
+                  locNames.push(response.data[i].locName);
+                }
+                console.log();
+                session.output.push({ output: true, text: [locNames.join(' ')], breakLine: true });
+                // Broadcast an apply
+                _scope.$broadcast('terminal-apply', {});
+              });
+              break;
+          default:
+            session.output.push({ output: true, text: [whatList.join(' ')], breakLine: true });
+            // Broadcast an apply
+            _scope.$broadcast('terminal-apply', {});
+      }
+    };
+      return me;
+    };
+    commandBrokerProvider.appendCommandHandler(worldsCommandHandler());
 
     commandBrokerProvider.appendCommandHandler({
         command: 'echo',
