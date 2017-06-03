@@ -1,10 +1,11 @@
 # MEAN MUD v1 - old
 
-This is the first version of MEAN MUD, a GUI for procedurally building out text based adventure games.  For those not familiar with MUD style games, MUD is an acronym for Multi User Dimension.  MUDs are essentially text based role playing adventure games and were some of the first multiplayer games that were traditionally played over Telnet.  One of the most common examples of a text based adventure game was [Zork](https://en.wikipedia.org/wiki/Zork).  The initial nested database setup was difficult to implement effectively with MongoDB and Mongoose and was abandoned for [MEAN MUD]() - this repository is stored as a reference.
+This is the first version of MEAN MUD, a GUI for procedurally building out text based adventure games.  For those not familiar with MUD style games, MUD is an acronym for Multi User Dimension.  MUDs are essentially text based role playing adventure games and were some of the first multiplayer games that were traditionally played over Telnet.  One of the most common examples of a text based adventure game was [Zork](https://en.wikipedia.org/wiki/Zork).  The initial nested database setup was difficult to implement effectively with MongoDB and Mongoose and was abandoned for [MEAN MUD](https://github.com/gnargnor/mean-mud) - this repository is stored as a reference.
 
 ## Getting Started
 
-[MEAN MUD]()
+This project has been updated to v2 and is no longer going to be updated.
+[MEAN MUD](https://github.com/gnargnor/mean-mud)
 
 ## Built With
 
@@ -18,10 +19,6 @@ This is the first version of MEAN MUD, a GUI for procedurally building out text 
 * CSS3
 * HTML5
 * JavaScript
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
