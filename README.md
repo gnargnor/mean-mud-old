@@ -4,8 +4,8 @@ This is the first version of MEAN MUD, a GUI for procedurally building out text 
 
 ## Getting Started
 
-This project has been updated to v2 and is no longer going to be updated.
-[MEAN MUD](https://github.com/gnargnor/mean-mud)
+This project has been updated to v2 and is no longer going to be updated.  
+Visit [MEAN MUD](https://github.com/gnargnor/mean-mud) to view the current version.
 
 ## Built With
 
